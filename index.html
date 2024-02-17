@@ -12,18 +12,20 @@
 
   <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
   <script>
-  
+   
+   //adding layers for graphics layer
     require([
      "esri/config",
       "esri/Map",
       "esri/views/MapView"
+      "esri/Graphic",  
+      "esri/layers/GraphicsLayer"   
     ], function (esriConfig,Map, MapView) {
 
       esriConfig.apiKey = "AAPK2cb19acc98eb406b80346e85af5aa1ffagWp07_WJVQlFAY2XL6xGrQ86USz9K6UzB1OaBd37PTIlYdHTo04S0-F9ETbr-dC";
       const map = new Map({
         basemap: "arcgis-topographic" // Basemap layer
       });
-
       const view = new MapView({
           map: map,
           center: [-97.7431, 30.2672], // Longitude, latitude
@@ -31,7 +33,34 @@
           container: "viewDiv" // Div element
         });
     });
-  </script>
+
+    //adding the constructor for the graphics layer
+    const graphicsLayer = new GraphicsLayer();  
+      map.add(graphicsLayer);
+
+    const point = { //Create a point  
+    type: "point",  
+    longitude: -97.750689,    //long lat of Stevie Ray Vaughan Statue
+    latitude: 30.263098
+    };
+
+    const simpleMarkerSymbol = {  
+    type: "simple-marker",  
+    color: [0, 0, 139],  // Color of blues rock
+    outline: {  
+    color: [255, 255, 255], // White  
+    width: 1
+    }  
+    };
+
+    const pointGraphic = new Graphic({  
+    geometry: point,  
+    symbol: simpleMarkerSymbol  
+    });
+
+    graphicsLayer.add(pointGraphic); // Add the point graphic to the graphics layer
+  
+    </script>
 
   <!-- css to make a full screen map -->
   <style>
