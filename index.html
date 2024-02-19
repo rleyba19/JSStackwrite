@@ -118,9 +118,6 @@
 
 view.graphics.add(polylineGraphic);
 
-
-
-
 // creating a polygon
 
 
@@ -152,15 +149,22 @@ const polyline2Graphic = new Graphic({
 
 view.graphics.add(polyline2Graphic);
 
+// Define a pop-up for usaeduLayer
+const popupEduusa = {
+  "title": "EDUs",
+  "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+}
 
-
-
-
-// creating rest URL
-
+//adding the Const for the feature layer
 const usaeduLayer = new FeatureLayer({
-url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer" //get URL from AGOL Item Page
-});
+url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
+
+//adding the popup here
+outFields: ["NAME","TOT_ENROLL"],
+popupTemplate: popupEduusa
+ });
+
+//adding the feature layer to the map
 map.add(usaeduLayer);
 
 </script>
