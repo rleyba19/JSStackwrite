@@ -168,12 +168,23 @@
 
   //REST URL
 
-  const usaedulayer = new FeatureLayer({
-    url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
-  });
-  
 
-  map.add(usaedulayer);
+
+    const popupEduusa = {
+      "title": "EDUs",
+      "content": "<b>Name:</b> {INSTNM}<br><b>Street Adress:</b> {ADDR}<br><b>Website:</b> {WEBADDR}<br>"
+    };
+
+
+    const usaedulayer = new FeatureLayer({
+      url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
+      outFields: ["INSTNM", "ADDR", "WEBADDR"],
+      popupTemplate: popupEduusa
+    });
+  
+    usaedulayer.popupTemplate = popupEduusa;
+
+    map.add(usaedulayer);
 
   });
 </script>
