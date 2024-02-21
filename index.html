@@ -39,13 +39,7 @@
       const graphicsLayer = new GraphicsLayer();  
       map.add(graphicsLayer);
 
-
-
-
-
-
-
-    const point = { //Create a point  
+      const point = { //Create a point  
       type: "point",  
       longitude: -97.750689,    //long lat of Stevie Ray Vaughan Statue
       latitude: 30.263098
@@ -73,9 +67,8 @@
     const pointGraphic = new Graphic({  
       geometry: point,
       symbol: simpleMarkerSymbol,  
-
-    attributes: attributes,
-    popupTemplate: popupTemplate
+      attributes: attributes,
+      popupTemplate: popupTemplate
   });
 
     graphicsLayer.add(pointGraphic);
@@ -83,15 +76,16 @@
     });   
 
 
-// creating a polyline graphic
 
-  const polyline = {
-    type: "polyline",
-    paths: [
-      [30.260821, -97.745540],
-      [30.262576, -97.744879]
-    ]
-  };
+// creating a polyline graphic
+ 
+const polyline = {
+  type: "polyline",
+  paths: [
+    [-97.750519, 30.250645], // Starting point coordinates (longitude, latitude)
+    [-97.745567, 30.246053]  // Ending point coordinates (longitude, latitude)
+  ]
+};
 
   const lineSymbol = {
     type: "simple-line",
@@ -115,58 +109,9 @@
     popupTemplate: popupTemplate
   });
 
-
-view.graphics.add(polylineGraphic);
-
-// creating a polygon
-
-
-const polyline2 = {
-  type: "polyline",
-  paths: [
-    [30.268383, -97.747697],
-    [30.268093, -97.746736],
-    [30.267231, -97.747059],
-    [30.267493, -97.748040]
-  ]
-};
-
-const lineSymbol2 = {
-  type: "simple-line",
-  color: [226, 119, 40], // Orange
-  width: 2
-  };
-
-const lineAtt = {
-  Name: "Republic Square Park", // The name of the pipeline
-  };
-
-const polyline2Graphic = new Graphic({
-  geometry: polyline, // Add the geometry created in step 3
-  symbol: lineSymbol, // Add the symbol created in step 4
-  attributes: lineAtt // Add the attributes created in step 5
-});
-
-view.graphics.add(polyline2Graphic);
-
-// Define a pop-up for usaeduLayer
-const popupEduusa = {
-  "title": "EDUs",
-  "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
-}
-
-//adding the Const for the feature layer
-const usaeduLayer = new FeatureLayer({
-url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
-
-//adding the popup here
-outFields: ["NAME","TOT_ENROLL"],
-popupTemplate: popupEduusa
- });
-
-//adding the feature layer to the map
-map.add(usaeduLayer);
-
+  view.graphics.add(polylineGraphic);
+  
+  
 </script>
 
   <!-- css to make a full screen map -->
