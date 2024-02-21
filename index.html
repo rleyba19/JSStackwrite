@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
+
+
+
+
+
   <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
   <script>
    
@@ -35,9 +40,20 @@
           container: "viewDiv" // Div element
         });
 
+
+
+
+
+
       //adding the constructor for the graphics layer
       const graphicsLayer = new GraphicsLayer();  
       map.add(graphicsLayer);
+
+
+
+
+
+
 
       const point = { //Create a point  
       type: "point",  
@@ -55,11 +71,11 @@
       }  
     };
 
-    const popupTemplate = {
+    var popupTemplate = {
     title: "{Name}",
     content: "{Description}"
     }
-    const attributes = {
+    var attributes = {
     Name: "Stevie Ray Vaughan Statue",
     Description: "A bronze sculpture of Stevie Ray Vaughan by Ralph Helmick"
     }
@@ -73,46 +89,81 @@
 
     graphicsLayer.add(pointGraphic);
      // Add the point graphic to the graphics layer
-    });   
+  
 
 
 
 // creating a polyline graphic
  
-const polyline = {
-  type: "polyline",
-  paths: [
-    [-97.750519, 30.250645], // Starting point coordinates (longitude, latitude)
-    [-97.745567, 30.246053]  // Ending point coordinates (longitude, latitude)
-  ]
-};
-
-  const lineSymbol = {
-    type: "simple-line",
-    color: [226, 119, 40], // Orange
-    width: 4
+    const polyline = {
+      type: "polyline",
+      paths: [
+        [-97.745537, 30.260817], // Starting point coordinates (longitude, latitude)
+        [-97.744852, 30.262561]  // Ending point coordinates (longitude, latitude)
+      ]
     };
 
-
-  const attributes = {
-    Name: "South Congress Bridge",
+    const lineSymbol = {
+      type: "simple-line",
+      color: [226, 119, 40], // Orange
+      width: 4
     };
 
-  const popupTemplate = {
-    title: "{Name}",
-    };
+    var attributes = {
+      Name: "South Congress Bridge",
+      };
 
-  const polylineGraphic = new Graphic({
-    geometry: polyline,
-    symbol: lineSymbol,
-    attributes: attributes,
-    popupTemplate: popupTemplate
-  });
+    var popupTemplate = {
+      title: "{Name}",
+      };
+
+    const polylineGraphic = new Graphic({
+      geometry: polyline,
+      symbol: lineSymbol,
+      attributes: attributes,
+      popupTemplate: popupTemplate
+    });
 
   view.graphics.add(polylineGraphic);
 
 
+//Creating a Polygon 
 
+    const polygon = {
+      type: "polygon",
+      rings: [
+        [-97.747700, 30.268386], // Longitude, latitude
+        [-97.746721, 30.268095], // Longitude, latitude
+        [-97.747062, 30.267230], // Longitude, latitude
+        [-97.748040, 30.267487] // Longitude, latitude
+      ]
+    };
+
+    const simpleFillSymbol = {
+      type: "simple-fill",
+      color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+      outline: {
+        color: [1, 1, 1],
+        width: 2
+      }
+    };
+
+    var attributes = {
+      Name: "Republic Square Park",
+      };
+
+    var popupTemplate = {
+      title: "{Name}",
+      };
+
+    const polygonGraphic = new Graphic({
+      geometry: polygon,
+      symbol: simpleFillSymbol,
+      attributes: attributes,
+      popupTemplate: popupTemplate
+    });
+
+    graphicsLayer.add(polygonGraphic);
 
 
   //REST URL
@@ -124,7 +175,7 @@ const polyline = {
 
   map.add(usaedulayer);
 
-  
+  });
 </script>
 
   <!-- css to make a full screen map -->
