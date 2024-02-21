@@ -186,6 +186,26 @@
 
     map.add(usaedulayer);
 
+
+    //REST URL CHALLENGE
+
+    const popupairports = {
+      "title": "Airports",
+      "content": "<b>Airport Code:</b> {REGION_COD}<br><b>City:</b> {CITY}<br><b>State:</b> {STATE_NAME}<br>"
+    };
+
+    const airportsLayer = new FeatureLayer({
+      url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/USAirportsRL/FeatureServer",
+      outFields: ["REGION_COD", "CITY", "STATE_NAME"],
+      popupTemplate: popupairports
+    });
+    
+    airportsLayer.popupTemplate = popupairports;
+
+    map.add(airportsLayer);
+
+
+
   });
 </script>
 
