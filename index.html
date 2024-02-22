@@ -205,18 +205,91 @@
       }
     }
 
+    //const to make the airport labels
+    const airportLabels = {
+      symbol: {
+        type: "text",
+      color: "#FFFFFF",
+      haloColor: "#5E8D74",
+      haloSize: "2px",
+      font: {
+        size: "12px",
+        family: "Noto Sans",
+        style: "italic",
+        weight: "normal"
+      }
+    },
+  labelPlacement: "above-center",
+  labelExpressionInfo: {
+    expression: "$feature.Fac_Name"
+  }
+};
+
     const airportsLayer = new FeatureLayer({
       url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/USAirportsRL/FeatureServer",
       outFields: ["REGION_COD", "CITY", "STATE_NAME"],
       popupTemplate: popupairports,
       renderer: airportRenderer,
-      definitionExpression: "FAC_TYPE = 'AIRPORT'"
-
+      definitionExpression: "FAC_TYPE = 'AIRPORT'",
+      labelingInfo: [airportLabels] //adding the labels
     });
     
 
     map.add(airportsLayer);
     
+
+
+
+    //Helicopter Challenge
+
+
+    const popupheliport = { //Popup for the Challenge
+      "title": "Heliports",
+      "content": "<b>Helicopter Code:</b> {REGION_COD}<br><b>City:</b> {CITY}<br><b>State:</b> {STATE_NAME}<br>"
+    };
+
+
+    const helicopterRenderer = {
+      "type": "simple",
+      "symbol": {
+        "type": "picture-marker",
+        "url": "https://rleyba19.github.io/JSStackread/635717.png",
+        "width": "18px",
+        "height": "18px"
+
+      }
+    }
+
+    //const to make the airport labels
+    const heliportLabels = {
+      symbol: {
+      type: "text",
+      color: "#FFFFFF",
+      haloColor: "#5E8D74",
+      haloSize: "2px",
+      font: {
+        size: "12px",
+        family: "Noto Sans",
+        style: "italic",
+        weight: "normal"
+      }
+    },
+    labelPlacement: "above-center",
+    labelExpressionInfo: {
+    expression: "$feature.Fac_Name"
+  }
+};  
+
+    const helicopterLayer = new FeatureLayer({
+      url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/USAirportsRL/FeatureServer",
+      outFields: ["REGION_COD", "CITY", "STATE_NAME"],
+      popupTemplate: popupheliport,
+      renderer: helicopterRenderer,
+      definitionExpression: "FAC_TYPE = 'HELIPORT'",
+      labelingInfo: [heliportLabels] //adding the labels
+    })
+    
+    map.add(helicopterLayer);
 
   });
 </script>
