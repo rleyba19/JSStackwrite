@@ -209,7 +209,9 @@
       url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/USAirportsRL/FeatureServer",
       outFields: ["REGION_COD", "CITY", "STATE_NAME"],
       popupTemplate: popupairports,
-      renderer: airportRenderer
+      renderer: airportRenderer,
+      definitionExpression: "FAC_TYPE = 'AIRPORT'"
+
     });
     
 
