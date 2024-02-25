@@ -11,6 +11,7 @@
   <script src="https://js.arcgis.com/4.25/"></script>
 
   
+  
 
 
 
@@ -25,8 +26,9 @@
       "esri/Graphic",
       "esri/layers/GraphicsLayer",
       "esri/layers/FeatureLayer",   
-      "esri/widgets/Editor"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor) {
+      "esri/widgets/Editor",
+      "esri/widgets/Legend"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor, Legend) {
 
       esriConfig.apiKey = "AAPK56419a6214b44ea4bcb814fec9ef171eVhAxzMstqNZOcF3t1U-exAFnYlWyzkQVYSOD8xzziKyHegsVdDZxaECBoXxisXR6";
       const map = new Map({
@@ -297,7 +299,7 @@
       type: "simple",
       symbol: {
         type: "picture-marker",
-        url: "https://rleyba19.github.io/JSStackwrite/outline_local_airport_black_24dp.png",
+        url: "https://rleyba19.github.io/JSStackwrite/Airport_symbol.svg.png",
         width: "18px",
         height: "18px"
       
@@ -352,6 +354,35 @@
 
     view.ui.add(editor, "top-right");
 
+
+
+    //Challenge 3 - Legend
+
+    const legend = new Legend({
+      view: view,
+      layerInfos: [
+        {
+          layer: myAirports,
+          title: "My Airports"
+        },
+        {
+          layer: airportsLayer,
+          title: "Airports"
+        },
+        {
+          layer: helicopterLayer,
+          title: "Heliports"
+        },
+        {
+          layer: usaedulayer,
+          title: "Colleges and Universities"
+        }
+      ]
+    });
+
+    view.ui.add(legend, "bottom-left");
+
+    
 
   }); 
 </script>
