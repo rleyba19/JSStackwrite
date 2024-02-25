@@ -24,8 +24,9 @@
       "esri/views/MapView",
       "esri/Graphic",
       "esri/layers/GraphicsLayer",
-      "esri/layers/FeatureLayer"   
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
+      "esri/layers/FeatureLayer",   
+      "esri/widgets/Editor"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor) {
 
       esriConfig.apiKey = "AAPK56419a6214b44ea4bcb814fec9ef171eVhAxzMstqNZOcF3t1U-exAFnYlWyzkQVYSOD8xzziKyHegsVdDZxaECBoXxisXR6";
       const map = new Map({
@@ -50,7 +51,7 @@
 
 
 
-      //cloned repo trial
+
 
 
 
@@ -190,7 +191,7 @@
 
     const popupairports = { //Popup for the Challenge
       "title": "Airports",
-      "content": "<b>Airport Code:</b> {REGION_COD}<br><b>City:</b> {CITY}<br><b>State:</b> {STATE_NAME}<br>"
+      "content": "<b>City:</b> {CITY}<br><b>State:</b> {STATE_NAME}<br>"
     };
 
     const airportRenderer = {
@@ -290,7 +291,32 @@
     
     map.add(helicopterLayer);
 
-  }); //
+    //adding the const for the feature layer
+
+    const myAirports = new FeatureLayer({
+      url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_RL2/FeatureServer",
+      outFields: ["AirportCode"],
+    });
+
+    map.add(myAirports);
+
+    //set the point layer's info
+
+    const pointInfos = {
+      Layer: myAirports,
+    }
+
+    //editor constructor
+
+    const editor = new Editor({
+      view: view,
+      layerInfos: [pointInfos]
+    });
+
+    view.ui.add(editor, "top-right");
+
+
+  }); 
 </script>
 
   <!-- css to make a full screen map -->
@@ -313,3 +339,4 @@
 
 </body>
 </html>
+
