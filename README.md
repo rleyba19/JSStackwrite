@@ -1,2 +1,2 @@
-# JS Stack Read
-JS Stack Read Lab
+# JS Stack Write
+JS Stack Write Lab
