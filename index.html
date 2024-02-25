@@ -319,7 +319,7 @@
     },
     labelPlacement: "above-center",
     labelExpressionInfo: {
-    expression: "$feature.Fac_Name"
+      expression: "$feature.AirportCode"
   }
 };  
     
@@ -330,8 +330,9 @@
 
     const myAirports = new FeatureLayer({
       url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Airports_RL2/FeatureServer",
-      outFields: ["AirportCode"],
+      outFields: ["*"],
       renderer: myAirportsRenderer,
+      labelingInfo: [myAirportsLabels]
     });
 
     map.add(myAirports);
